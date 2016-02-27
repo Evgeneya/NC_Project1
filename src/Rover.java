@@ -2,8 +2,8 @@
  * Created by 1 on 27.02.2016.
  */
 public class Rover implements Turnable, Moveable{
-    Direction direction;
-    int x, y;
+    private Direction direction;
+    private int x, y;
 
     @Override
     public void turnTo(Direction direction) {
