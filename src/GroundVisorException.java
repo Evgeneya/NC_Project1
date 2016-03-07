@@ -3,4 +3,10 @@
  */
 public class GroundVisorException extends RuntimeException {
 
+    private static String message = "Ground out of bounds.";
+
+    public GroundVisorException(){
+        super(message);
+    }
+
 }
