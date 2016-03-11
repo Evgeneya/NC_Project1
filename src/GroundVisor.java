@@ -5,26 +5,18 @@ public class GroundVisor {
 
     private Ground ground;
 
-    public boolean hasObstacles(int length, int width){
-        GroundCell[][] gCell = ground.getLandscape();
-        try {
-            for (int i = 0; i < length; i++) {
-                for (int j = 0; j < width; j++) {
-                    if ((gCell[i][j].x > ground.getLength()) || (gCell[i][j].y > ground.getWidth())) {
+    public boolean hasObstacles(int x, int y) throws GroundVisorException{
+        if (x < 0 || y < 0)
+            throw new GroundVisorException();
+        if ((x > ground.getLength()) || (y > ground.getWidth())) {
                         throw new GroundVisorException();
-                    }
-                }
-            }
-        }
-        catch (GroundVisorException e){
-            e.printStackTrace();
-            return false;
         }
 
-        return true;
+        return ground.getLandscape()[x][y].getState() == CellState.OCCUPIED;
     }
 
     public void setGround(Ground ground){
+
         this.ground = ground;
     }
 

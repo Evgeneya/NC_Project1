@@ -17,6 +17,8 @@ public class Ground {
             for (int j = 0; j < width; j++) {
                 landscape[i][j] = new GroundCell();
                 landscape[i][j].setState(CellState.FREE);
+                landscape[i][j].setX(i);
+                landscape[i][j].setY(j);
             }
         }
     }
