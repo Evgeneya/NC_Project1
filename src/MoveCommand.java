@@ -3,8 +3,8 @@
  */
 public class MoveCommand implements RoverCommand {
 
-    Moveable moveable;
-    int x, y;
+    private Moveable moveable;
+    private int x, y;
 
     public void execute(){
         moveable.move(x, y);

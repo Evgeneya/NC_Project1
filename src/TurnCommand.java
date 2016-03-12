@@ -3,8 +3,8 @@
  */
 public class TurnCommand implements RoverCommand {
 
-    Turnable turnable;
-    Direction direction;
+    private Turnable turnable;
+    private Direction direction;
 
     public void execute(){
         turnable.turnTo(direction);

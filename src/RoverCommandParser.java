@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,14 +8,21 @@ import java.util.regex.Pattern;
  */
 public class RoverCommandParser {
 
-    Rover rover;
-    BufferedReader fileReader;
+    private Rover rover;
+    private BufferedReader fileReader;
 
     public RoverCommandParser(Rover rover, BufferedReader reader) {
         this.rover = rover;
         this.fileReader = reader;
     }
 
+    /**
+     * Read line and recognize it.
+     *
+     * @return      Class implemented RoverCommand interface if the command is available
+     *              or null if the command isn't available or command is null.
+     *
+     */
     public RoverCommand readNextCommand() {
         String command;
         try {
