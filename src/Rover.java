@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.Buffer;
 
 /**
  * Created by 1 on 27.02.2016.
@@ -12,7 +13,17 @@ public class Rover implements Turnable, Moveable, ProgramFileAware{
     private int x;
     private int y;
     private GroundVisor visor = new GroundVisor();
-    private RoverCommandParser programParser;
+    private RoverCommandParser programParser = new RoverCommandParser(this);
+    private BufferedReader fileReader;
+
+
+    public BufferedReader getBufferedReader() {
+        return fileReader;
+    }
+
+    public GroundVisor getVisor(){
+        return visor;
+    }
 
     @Override
     public void turnTo(Direction direction) {
@@ -29,32 +40,22 @@ public class Rover implements Turnable, Moveable, ProgramFileAware{
 
     @Override
     public void executeProgramFile(String name){
-        BufferedReader fileReader = null;
         try {
             fileReader = new BufferedReader(new FileReader(name));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        programParser = new RoverCommandParser(this, fileReader);
 
-        while (true){
-            RoverCommand roverCommand = programParser.readNextCommand();
-            if (roverCommand == null){
-                try {
-                    fileReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return;
-            }
+        programParser = new RoverCommandParser(this);
+        RoverCommand roverCommand;
+        while ((roverCommand = programParser.readNextCommand()) != null){
             roverCommand.execute();
         }
 
-
-
-    }
-
-    public GroundVisor getVisor(){
-        return visor;
+        try {
+            fileReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

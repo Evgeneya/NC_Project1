@@ -10,11 +10,14 @@ public class RoverCommandParser {
 
     private Rover rover;
     private BufferedReader fileReader;
+    private static final Pattern pattern = Pattern.compile("(Move)\\s(\\d+)\\s(\\d+)|(Turn)\\s(NORTH|SOUTH|EAST|WEST)");
 
-    public RoverCommandParser(Rover rover, BufferedReader reader) {
+    public RoverCommandParser(Rover rover) {
         this.rover = rover;
-        this.fileReader = reader;
+        this.fileReader = rover.getBufferedReader();
     }
+
+
 
     /**
      * Read line and recognize it.
@@ -33,9 +36,7 @@ public class RoverCommandParser {
         }
         if (command == null)
             return null;
-        String regex = "(M)\\s(\\d+)\\s(\\d+)|(T)\\s([NSEW])";
-        Pattern p = Pattern.compile(regex);
-        Matcher m = p.matcher(command);
+        Matcher m = pattern.matcher(command);
         if (m.matches()){
             if (m.group(1) != null){                     //move command
                 int x = Integer.parseInt(m.group(2));
@@ -43,29 +44,11 @@ public class RoverCommandParser {
                 return new MoveCommand(rover, x, y);
             }
             else{                                        //turn command
-                Direction direction;
-                switch (m.group(5).charAt(0)){
-                    case 'N':
-                        direction = Direction.NORTH;
-                        break;
-                    case 'E':
-                        direction = Direction.EAST;
-                        break;
-                    case 'W':
-                        direction = Direction.WEST;
-                        break;
-                    case 'S':
-                        direction = Direction.SOUTH;
-                        break;
-                    default:
-                        System.out.println("Error in command!");
-                        return null;
-                }
-                return new TurnCommand(rover, direction);
+                return new TurnCommand(rover, Direction.valueOf(m.group(5)));
             }
         }
         else{
-            System.out.println("Error in command!");
+            System.out.println("Error in command: " + command);
             return null;
         }
     }
