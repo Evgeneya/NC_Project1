@@ -53,7 +53,7 @@ public class RoverCommandParser {
             else
                 if (m.group(4) != null)                  //turn command
                     return new TurnCommand(rover, Direction.valueOf(m.group(5)));
-                else{                                   //import command
+                else{                                   //import command - executing commands from another file
                     ArrayList<RoverCommand> listCommand = new ArrayList<RoverCommand>();
                     try {
                         BufferedReader reader = fileReader;

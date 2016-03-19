@@ -12,6 +12,6 @@ public class LoggingCommand implements RoverCommand {
     @Override
     public void execute() {
         command.execute();
-        System.out.println(command.toString() + " was fulfilled.");
+        System.out.println(command.toString() + " was completed.");
     }
 }
