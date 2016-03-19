@@ -17,10 +17,6 @@ public class Rover implements Turnable, Moveable, ProgramFileAware{
     private BufferedReader fileReader;
 
 
-    public BufferedReader getBufferedReader() {
-        return fileReader;
-    }
-
     public GroundVisor getVisor(){
         return visor;
     }
@@ -45,8 +41,7 @@ public class Rover implements Turnable, Moveable, ProgramFileAware{
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        programParser = new RoverCommandParser(this);
+        programParser.setFileReader(fileReader);
         RoverCommand roverCommand;
         while ((roverCommand = programParser.readNextCommand()) != null){
             roverCommand.execute();

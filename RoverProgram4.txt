@@ -1,0 +1,2 @@
+Turn EAST
+Move 10 10

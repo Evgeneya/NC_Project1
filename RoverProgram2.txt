@@ -1,0 +1,3 @@
+Move 3 8
+Import RoverProgram3.txt
+Turn SOUTH
