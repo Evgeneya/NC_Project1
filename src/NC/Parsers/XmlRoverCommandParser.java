@@ -2,9 +2,11 @@
  * Created by 1 on 28.03.2016.
  */
 
+package NC.Parsers;
+import NC.*;
+import NC.Commands.*;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.BufferedReader;
@@ -12,7 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
 public class XmlRoverCommandParser implements CommandParser {
 
     private Rover rover;

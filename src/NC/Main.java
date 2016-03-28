@@ -1,3 +1,4 @@
+package NC;
 public class Main {
 
 

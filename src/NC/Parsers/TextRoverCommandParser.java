@@ -1,3 +1,5 @@
+package NC.Parsers;
+import NC.Commands.*;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -8,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import NC.*;
 /**
  * Created by 1 on 11.03.2016.
  */

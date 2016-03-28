@@ -1,3 +1,8 @@
+package NC;
+import NC.Commands.RoverCommand;
+import NC.Parsers.CommandParser;
+import NC.Parsers.TextRoverCommandParser;
+import NC.Parsers.XmlRoverCommandParser;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import javax.xml.parsers.*;
