@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<Commands>
+        <Move x="0" y="7"></Move>
+        <Turn direction="WEST"></Turn>
+        <Move x="21" y="21"></Move>
+</Commands>
